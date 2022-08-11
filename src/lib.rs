@@ -45,11 +45,9 @@ pub extern "C" fn GetRebarSpecification() -> RebarSpecification_fromRust{
     RebarSpecification_fromRust{Key : 1, strNamme : c_str_name.into_raw(), specLength : len as i32, ptrSpecInfo : slim_ptr}
 }
 
-#[no_mangle]
-pub extern "C" fn theme_song_generate() -> *mut c_char {
-    let mut song = String::from("1");
-    song.push_str("2");
 
-    let c_str_song = CString::new(song).unwrap();
-    c_str_song.into_raw()
+#[no_mangle]
+pub extern "C" fn CreateRebarSpecification(input : &RebarSpecification_fromRust) -> bool {
+    //do something
+    true
 }
