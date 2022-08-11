@@ -1,37 +1,6 @@
 use std::ffi::CString;
-use std::os::raw::c_char;
-
-#[repr(C)]
-pub struct RustObject {
-    Key: i32,
-    dDiameter : f64,
-    enType : i32,
-    // Other members...
-}
-
-#[repr(C)]
-pub struct  RustRebarSpecInfo {
-	strName: *mut c_char,
-	dDiameter: f64,
-	dBendingRadius: f64,
-	dHookLength_90: f64,
-	dHookLength_135: f64,
-	dHookLength_180: f64,
-	dWeight: f64
-}
-
-#[repr(C)]
-pub struct RebarSpecification_fromRust {
-    Key: i32,
-    strNamme: *mut c_char,
-    specLength: i32,
-    ptrSpecInfo: *mut RustRebarSpecInfo,
-}
-
-#[no_mangle]
-pub extern "C" fn struct_from_rust() -> RustObject{
-    RustObject{Key : 3, dDiameter : 5.0, enType : 2}
-}
+use define_data::rebar_specification::{RebarSpecification_fromRust, RustRebarSpecInfo};
+mod define_data;
 
 #[no_mangle]
 pub extern "C" fn GetRebarSpecification() -> RebarSpecification_fromRust{
